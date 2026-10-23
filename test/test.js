@@ -23,3 +23,16 @@ describe("GET /", () => {
 
   // Inteionally omitting the return output check (Still getting 100% coverage)
 });
+
+describe("GET /health", () => {
+  it("return HTTP 200 and serve the index.html", async () => {
+    const response = await request(app)
+      .get("/health")
+      .expect("Content-Type", /html/) // Checks that it is serving text/html
+      .expect(200); // Checks the HTTP status code
+
+    // Verify it contains HTML code structural signatures
+    expect(response.text).to.match(/<!doctype html>/i);
+    expect(response.text).to.include("All files");
+  });
+});
