@@ -30,9 +30,9 @@ jobs:
 
       - name: Generate code coverage
         run: yarn coverage
-      
+
       - name: Upload coverage HTML report
-        if.always()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage--report
